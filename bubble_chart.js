@@ -9,9 +9,9 @@
  *
  */
 var globalNodes = [];
-var globalForce = null;
+//
 var radiusScale = d3.scale.pow()
-    .exponent(0.6)
+    .exponent(0.7)
     .range([2, 80]);
 var svg = null;
 var force = null
@@ -20,8 +20,8 @@ var force = null
 
 function bubbleChart() {
   // Constants for sizing
-  var width = 940;
-  var height = 600;
+  var width = 1080;
+  var height = 640;
 
   // tooltip for mouseover functionality
   var tooltip = floatingTooltip('gates_tooltip', 240);
@@ -101,7 +101,7 @@ function bubbleChart() {
     // working with data.
     console.log(rawData.length);
     var myNodes = rawData.map(function (d) {
-      var lengthOfActive = 134;
+      var lengthOfActive = 130;
       if (d.status=='Active') {
         return {
           id: d.id,
@@ -117,7 +117,7 @@ function bubbleChart() {
         };
       } else {
         return {
-          id: d.id + lengthOfActive,
+          id: +d.id + lengthOfActive,
           radius: radiusScale(Math.abs(d.C_eqas)),
           value: d.C_eqas,
           A_loas: d.A_loas,
@@ -157,7 +157,7 @@ function bubbleChart() {
     // note we have to ensure the total_amount is a number by converting it
     // with `+`.
     console.log(rawData);
-    var maxAmount = d3.max(rawData, function (d) { return +d.C_eqas; });
+    var maxAmount = d3.max(rawData, function (d) { return d.C_eqas; });
     console.log(maxAmount)
     radiusScale.domain([0, maxAmount]);
     newData = rawData.filter(function(value) {return value.C_eqas != 1; });
@@ -326,17 +326,14 @@ function bubbleChart() {
     // change outline to indicate hover state.
     d3.select(this).attr('stroke', 'black');
 
-    var content = '<span class="name">Title: </span><span class="value">' +
-        d.name +
+    var content = '<span class="name">Bank ID: </span><span class="value">' +
+        d.id +
         '</span><br/>' +
-        '<span class="name">Amount: </span><span class="value">' +
-        addCommas(d.value) +
-        '</span><br/>' +
-        '<span class="name">Status: </span><span class="value">' +
-        d.status +
-        '</span><br/>' +
+            '<span class="name">Status: </span><span class="value">' +
+            d.status +
+            '</span><br/>' +
         '<span class="name">C_eqas: </span><span class="value">' +
-        d.value +
+        addCommas(d.value) +
         '</span><br/>' +
         '<span class="name">A_loas: </span><span class="value">' +
         d.A_loas +
@@ -455,6 +452,9 @@ function setupFeatures() {
 
         //update nodes here
 
+        var radiusScale = d3.scale.pow()
+            .exponent(0.7)
+            .range([2, 80]);
         globalNodes.forEach(function(d) {
           d.radius = radiusScale(Math.abs(d.value));
         });
@@ -492,7 +492,9 @@ function setupFeatures() {
 
   d3.select('#A_loas')
       .on('click', function () {
-
+        var radiusScale = d3.scale.pow()
+            .exponent(0.6)
+            .range([2, 30]);
         var g = d3.selectAll('.bubble')
             .data(globalNodes, function(d, i) {
               return d.id;
@@ -539,6 +541,9 @@ function setupFeatures() {
         // d3.select('.bubble').forEach(function(d) {
         //   console.log(d);
         // })
+        var radiusScale = d3.scale.pow()
+            .exponent(0.7)
+            .range([2, 30]);
         globalNodes.forEach(function(d) {
           d.radius = radiusScale(Math.abs(d.A_colo));
         });
@@ -569,6 +574,9 @@ function setupFeatures() {
         //     .attr('x', Math.random() * 900)
         //     .attr('y', Math.random() * 800)
         // ;
+        var radiusScale = d3.scale.pow()
+            .exponent(0.7)
+            .range([2, 40]);
         globalNodes.forEach(function(d) {
           d.radius = radiusScale(Math.abs(d.A_inlo));
         });
@@ -588,6 +596,9 @@ function setupFeatures() {
       });
   d3.select('#E_inex')
       .on('click', function () {
+        var radiusScale = d3.scale.pow()
+            .exponent(0.4)
+            .range([2, 20]);
         globalNodes.forEach(function(d) {
           d.radius = radiusScale(Math.abs(d.E_inex));
         });
