@@ -1,0 +1,118 @@
+.axis path,
+.axis line {
+    fill: none;
+    stroke: none;
+    shape-rendering: crispEdges;
+}
+
+path.line {
+    fill: none;
+    stroke-width: 1px;
+    stroke-opacity: 80%;
+}
+
+.line.normal {
+    stroke: gray;
+
+}
+
+.line.unfocused{
+    stroke-opacity: 10%;
+}
+
+.countries path.focused {
+
+    fill: orange;
+
+}
+
+.container {
+    width: 1290px;
+    margin: auto;
+}
+.year{
+    position: absolute;
+    top: -33px;
+    left: 20px;
+}
+#graphic {
+    padding-top: 60px;
+}
+#sections {
+    position: relative;
+    display: inline-block;
+    width: 250px;
+    top: 0px;
+    z-index: 90;
+    padding-bottom: 250px;
+}
+.step {
+    margin-bottom: 300px;
+    font-family: "TiemposTextWeb-Regular","Georgia";
+    font-size: 16px;
+    line-height: 23px;
+    color: #767678;
+}
+#sections .title {
+    font-family: Arial,Helvetica,"san-serif";
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 2px;
+    color: #262626;
+    line-height: 1.2em;
+}
+#extra-space {
+    height: 300px;
+}
+#vis {
+    display: inline-block;
+    position: fixed;
+    top: 60px;
+    z-index: 1;
+    margin-left: 0;
+    font-size: 10px;
+}
+
+.tooltip {
+    position: absolute;
+    z-index: 10;
+    text-align: left;
+    width: 170px;
+    padding: 10px;
+    font-size: 10px;
+    font-family: Helvetica, sans-serif;
+    background: #ffffff;
+    pointer-events: none;
+    opacity: 0;
+}
+.tooltip h3 {
+    font-size: 12px; margin: 0 0 7px 0;
+    line-height: 1.2em;
+}
+div.tooltip .line { clear: both; margin-top: 3px; font-size: 11px; }
+div.tooltip .symbol { float: left; width: 6px; height: 6px; margin: 3px 4px 0 0; }
+div.tooltip .val { float: right; width: 25px; text-align: center; margin-right: 4px; background: none; }
+
+
+.overlay {
+    fill: none;
+    pointer-events: all;
+}
+
+.button {
+    fill: #000;
+}
+
+.scalebutton {
+    cursor: pointer;
+}
+.countries {
+    stroke: #fff;
+    stroke-linejoin: round;
+}
+.countries path.selected {
+    stroke: #000;
+    stroke-width: 0.5px;
+}
+
+.clr { clear: both; }
